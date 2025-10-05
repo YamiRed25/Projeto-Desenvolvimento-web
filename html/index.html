@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Primeiro Site | Loja de Canecas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+ <header class="barra-principal">
+  <div class="cabecalho-container">
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="https://images.vexels.com/media/users/3/135698/isolated/preview/712ea6d32c097fff016ce5edc03347c7-icone-do-circulo-da-caneca-de-cafe.png" alt="Logo da Loja de Canecas" />
+      </a>
+    </div>
+
+    <!-- Busca -->
+    <div class="busca">
+      <input type="text" placeholder="Página: sua-loja.com.br" />
+      <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <!-- Ícones à direita -->
+    <div class="icones-direita">
+      <div class="icone-item">
+        <i class="fas fa-comment-dots"></i>
+        <span>Central de Atendimento</span>
+      </div>
+      <div class="icone-item">
+        <i class="fas fa-user-lock"></i>
+        <span>Painel Privado</span>
+      </div>
+      <div class="icone-item carrinho">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Carrinho <span id="contador-carrinho">0</span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <nav class="menu-categorias">
+    <a href="#" class="item-menu principal">Todas as categorias</a>
+    <a href="#" class="item-menu">Coleção</a>
+    <a href="#" class="item-menu">Caneca Mágica</a>
+    <a href="#" class="item-menu">Canecas com Foto</a>
+    <a href="#" class="item-menu">Presentes</a>
+    <a href="#" class="item-menu">Personalize o seu Jeito</a>
+    <a href="#" class="item-menu outlet">OUTLET</a>
+  </nav>
+
+  <div class="banner-imagem">
+    <img src="https://cdn.awsli.com.br/1594/1594408/arquivos/banner-caneca.jpg" alt="Banner Promocional de Canecas" />
+  </div>
+
+  <main class="secao-principal">
+    <div class="slideshow-container">
+      <img id="banner-slide" src="https://down-br.img.susercontent.com/file/9fe3aa3d22cf3eec4e46157967a48f38" alt="Banner Promocional de Canecas" style="width:100%" />
+    </div>
+
+    <div class="destaque-texto">
+      <h2>Canecas <br /> profissionais</h2>
+      <p class="desconto">10% de Desconto<br /> no pagamento via Pix</p>
+      <button class="botao-promocao">Clique e Confira</button>
+    </div>
+  </main>
+
+  <section class="secao-produtos">
+    <h2>Produtos Populares</h2>
+    <div class="grade-produtos">
+      <div class="card-produto" data-id="caneca-berserk">
+        <img src="https://a-static.mlcdn.com.br/800x560/caneca-berserk-caveira-ceramica-325-ml-interior-e-alca-preta-imperial-print/olistsp/osps1gopo90c5o77/f54c6d546e1b590efcce67ed1c56674b.jpeg" alt="Caneca berserk" />
+        <h3>Caneca berserk</h3>
+        <p class="preco">R$ 39,90</p>
+        <a href="produtos.html?id=caneca-berserk" class="btn-comprar-link">Comprar</a>
+
+      </div>
+
+      <div class="card-produto" data-id="caneta-azul">
+        <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-m0qu52gh9ffh4b" alt="Caneta azul" />
+        <h3>Caneta azul</h3>
+        <p class="preco">R$ 45,00</p>
+        <a href="produtos.html?id=caneca-coracao" class="btn-comprar-link">Comprar</a>
+
+      </div>
+
+      <div class="card-produto" data-id="caneca-personalizada">
+        <img src="https://www.neddpublicidade.com.br/wp-content/images/produtos/large/1164_zuqa0vhu96hk7q5teg8vx.jpg" alt="Caneca personalizada" />
+        <h3>Caneca personalizada</h3>
+        <p class="preco">R$ 52,90</p>
+        <button class="btn-comprar" data-preco="52.90">Comprar</button>
+      </div>
+
+      <div class="card-produto" data-id="caneca-coracao">
+        <img src="https://dcdn-us.mitiendanube.com/stores/005/791/987/products/preto-f4665ba50b7964658617390538854676-1024-1024.png" alt="Caneca Coração Azul" />
+        <h3>Caneca Coração Azul</h3>
+        <p class="preco">R$ 52,90</p>
+        <button class="btn-comprar" data-preco="52.90">Comprar</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="modal-carrinho" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Seu Carrinho de Compras</h2>
+      <div id="lista-carrinho"><p>Seu carrinho está vazio.</p></div>
+      <div class="modal-total">
+        <h3>Total: <span id="valor-total">R$ 0,00</span></h3>
+      </div>
+      <button class="botao-finalizar">Finalizar Compra</button>
+    </div>
+  </div>
+
+  <a href="https://api.whatsapp.com/send?phone=5585992113998&text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20as%20canecas." target="_blank" class="whatsapp-float">
+    <img src="https://portais.univasf.edu.br/programadegestao/imagens/icon-whatsapp.png/@@images/image.png" alt="Logo do WhatsApp" class="whatsapp-icon-img" />
+  </a>
+
+  <footer class="rodape-principal">
+    <div class="rodape-container">
+      <div class="rodape-coluna">
+        <h3>TRABALHO (Sua Loja)</h3>
+        <p>Canecas personalizadas com carinho e qualidade. Fazemos a sua ideia virar arte!</p>
+        <p>Email: contato@suaempresa.com.br</p>
+        <p>Telefone: (XX) XXXX-XXXX</p>
+      </div>
+
+      <div class="rodape-coluna">
+        <h3>Ajuda e Informações</h3>
+        <ul>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Rastrear Pedido</a></li>
+          <li><a href="#">FAQ - Perguntas Frequentes</a></li>
+        </ul>
+      </div>
+
+      <div class="rodape-coluna">
+        <h3>Siga-nos</h3>
+        <p>Facebook | Instagram</p>
+        <p>Newsletter</p>
+        <input type="email" placeholder="Seu melhor e-mail" />
+        <button>Assinar</button>
+      </div>
+    </div>
+    <div class="rodape-copy">
+      <p>© 2025 TRABALHO DESENVOLVIMENTO WEB. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
