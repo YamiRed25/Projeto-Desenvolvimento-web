@@ -4,55 +4,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meu Primeiro Site | Loja de Canecas</title>
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/273/273127.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="mobile.css" media="screen and (orientation: portrait)">
+  <link rel="stylesheet" href="desktop.css">
 </head>
-<body>
+<body onresize="mudouTamanho()">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
  <header class="barra-principal">
-  <div class="cabecalho-container">
-    <!-- Logo -->
-    <div class="logo">
-      <a href="/">
-        <img src="https://images.vexels.com/media/users/3/135698/isolated/preview/712ea6d32c097fff016ce5edc03347c7-icone-do-circulo-da-caneca-de-cafe.png" alt="Logo da Loja de Canecas" />
-      </a>
-    </div>
+  
+  <nav> <!-- caixa navegação-->
+      <div class="cabecalho-container">
+        <!-- Logo -->
+        <div class="logo">
+          <a href="/">
+            <img src="https://images.vexels.com/media/users/3/135698/isolated/preview/712ea6d32c097fff016ce5edc03347c7-icone-do-circulo-da-caneca-de-cafe.png" alt="Logo da Loja de Canecas" />
+          </a>
+        </div>
+        <!-- Busca -->
+        <div class="busca" style="position: relative;">
+        <input type="text" placeholder="Buscar produto..." id="campo-pesquisa" />
+        <button id="botao-pesquisa"><i class="fas fa-search"></i></button>
+        <div id="resultados-pesquisa" class="resultados-pesquisa"></div>
+        </div>
 
-    <!-- Busca -->
-    <div class="busca">
-      <input type="text" placeholder="Página: sua-loja.com.br" />
-      <button><i class="fas fa-search"></i></button>
-    </div>
+        <!-- Ícones à direita -->
+        <div class="icones-direita">
+          <div class="icone-item">
+            <i class="fas fa-comment-dots"></i>
+            <span>Central de Atendimento</span>
+          </div>
+        <!-- Botão de login -->
+<button id="abrir-login" class="botao-login">
+  <i class="fas fa-user"></i>
+  <span>Login</span>
+</button>
 
-    <!-- Ícones à direita -->
-    <div class="icones-direita">
-      <div class="icone-item">
-        <i class="fas fa-comment-dots"></i>
-        <span>Central de Atendimento</span>
-      </div>
-      <div class="icone-item">
-        <i class="fas fa-user-lock"></i>
-        <span>Painel Privado</span>
-      </div>
-      <div class="icone-item carrinho">
-        <i class="fas fa-shopping-cart"></i>
-        <span>Carrinho <span id="contador-carrinho">0</span></span>
-      </div>
-    </div>
+
+<!-- Modal de login -->
+<div id="modal-login" class="modal"> 
+  <div class="modal-content">
+    <span class="close-button" id="fechar-login">&times;</span>
+    <h2>Entrar na sua conta</h2>
+    <input type="text" id="usuario" placeholder="Usuário" />
+    <input type="password" id="senha" placeholder="Senha" />
+    <button onclick="fazerLogin()">Login</button>
+    <p id="mensagem-login"></p>
   </div>
-</header>
+</div>
 
 
-  <nav class="menu-categorias">
-    <a href="#" class="item-menu principal">Todas as categorias</a>
-    <a href="#" class="item-menu">Coleção</a>
-    <a href="#" class="item-menu">Caneca Mágica</a>
-    <a href="#" class="item-menu">Canecas com Foto</a>
-    <a href="#" class="item-menu">Presentes</a>
-    <a href="#" class="item-menu">Personalize o seu Jeito</a>
+          <div class="icone-item carrinho">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Carrinho <span id="contador-carrinho">0</span></span>
+          </div>
+        </div>
+      </div>
+  <!--cabeçalho com as categorias -->
+  <span class="material-symbols-outlined" id="icone-menu" onclick="clickMenu()">menu</span>
+  <div class="menu-categorias" id="itens">
+    <a href="#" class="item-menu principal">Todas as categorias</a> 
+    <a href="#" class="item-menu">Coleção</a> 
+    <a href="#" class="item-menu">Caneca Mágica</a> 
+    <a href="#" class="item-menu">Canecas com Foto</a> 
+    <a href="#footer" class="item-menu">Presentes</a> 
+    <a href="#" class="item-menu">Personalize o seu Jeito</a> 
     <a href="#" class="item-menu outlet">OUTLET</a>
-  </nav>
-
+  </div>
+</nav>
+</header>
+<!-- banner que fica alterando -->
   <div class="banner-imagem">
     <img src="https://cdn.awsli.com.br/1594/1594408/arquivos/banner-caneca.jpg" alt="Banner Promocional de Canecas" />
   </div>
@@ -61,7 +84,6 @@
     <div class="slideshow-container">
       <img id="banner-slide" src="https://down-br.img.susercontent.com/file/9fe3aa3d22cf3eec4e46157967a48f38" alt="Banner Promocional de Canecas" style="width:100%" />
     </div>
-
     <div class="destaque-texto">
       <h2>Canecas <br /> profissionais</h2>
       <p class="desconto">10% de Desconto<br /> no pagamento via Pix</p>
@@ -72,39 +94,71 @@
   <section class="secao-produtos">
     <h2>Produtos Populares</h2>
     <div class="grade-produtos">
-      <div class="card-produto" data-id="caneca-berserk">
+<!-- produtos do site e alteraçoes de preco -->
+      <section class="card-produto" data-id="caneca-berserk">
         <img src="https://a-static.mlcdn.com.br/800x560/caneca-berserk-caveira-ceramica-325-ml-interior-e-alca-preta-imperial-print/olistsp/osps1gopo90c5o77/f54c6d546e1b590efcce67ed1c56674b.jpeg" alt="Caneca berserk" />
         <h3>Caneca berserk</h3>
-        <p class="preco">R$ 39,90</p>
-        <a href="produtos.html?id=caneca-berserk" class="btn-comprar-link">Comprar</a>
+        <p class="preco"></p>
+       <p class="preco-produto">
+       <span class="pix-preco">R$ 39,11 no Pix</span><br>
+       <span class="desconto">com 10% de desconto</span><br>
+       <span class="preco-original">R$ 32,90</span><br>
+       <span class="parcelamento">até 2x de R$ 18,95 sem juros</span>
+       </p>
 
-      </div>
+        <a href="produtos.html?id=caneca-berserk" data-preco="39,90" class="btn-comprar-link">Comprar</a>
 
-      <div class="card-produto" data-id="caneta-azul">
+      </section>
+
+      <section class="card-produto" data-id="caneta-azul">
         <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-m0qu52gh9ffh4b" alt="Caneta azul" />
         <h3>Caneta azul</h3>
-        <p class="preco">R$ 45,00</p>
-        <a href="produtos.html?id=caneca-coracao" class="btn-comprar-link">Comprar</a>
+        <p class="preco"></p>
+        <p class="preco-produto">
+        <span class="pix-preco">R$ 29,99 no Pix</span><br>
+        <span class="desconto">com 10% de desconto</span><br>
+        <span class="preco-original">R$ 49,90</span><br>
+        <span class="parcelamento">até 2x de R$ 18,95 sem juros</span>
+        </p>
 
-      </div>
+        <a href="produtos.html?id=caneca-coracao" data-preco="45,90" class="btn-comprar-link">Comprar</a>
+       
 
-      <div class="card-produto" data-id="caneca-personalizada">
+      </section>
+
+      <section class="card-produto" data-id="caneca-personalizada">
         <img src="https://www.neddpublicidade.com.br/wp-content/images/produtos/large/1164_zuqa0vhu96hk7q5teg8vx.jpg" alt="Caneca personalizada" />
         <h3>Caneca personalizada</h3>
-        <p class="preco">R$ 52,90</p>
-        <button class="btn-comprar" data-preco="52.90">Comprar</button>
-      </div>
+        <p class="preco"></p>
+        <p class="preco-produto">
+        <span class="pix-preco">R$ 34,11 no Pix</span><br>
+        <span class="desconto">com 10% de desconto</span><br>
+        <span class="preco-original">R$ 37,90</span><br>
+        <span class="parcelamento">até 2x de R$ 18,95 sem juros</span>
+        </p>
 
-      <div class="card-produto" data-id="caneca-coracao">
+        <a href="produtos.html?id=Caneca-personalizada" data-preco="52.90" class="btn-comprar-link">Comprar</a>
+
+      </section>
+
+      <section class="card-produto" data-id="caneca-coracao">
         <img src="https://dcdn-us.mitiendanube.com/stores/005/791/987/products/preto-f4665ba50b7964658617390538854676-1024-1024.png" alt="Caneca Coração Azul" />
         <h3>Caneca Coração Azul</h3>
-        <p class="preco">R$ 52,90</p>
-        <button class="btn-comprar" data-preco="52.90">Comprar</button>
-      </div>
+        <p class="preco"></p>
+      <p class="preco-produto">
+      <span class="pix-preco">R$ 34,11 no Pix</span><br>
+      <span class="desconto">com 10% de desconto</span><br>
+      <span class="preco-original">R$ 37,90</span><br>
+      <span class="parcelamento">até 2x de R$ 18,95 sem juros</span>
+      </p>
+
+        <a href="produtos.html?id=Caneca-Coração-Azul" data-preco="52.90" class="btn-comprar-link">Comprar</a>
+
+      </section>
     </div>
   </section>
 
-  <div id="modal-carrinho" class="modal">
+  <section id="modal-carrinho" class="modal">
     <div class="modal-content">
       <span class="close-button">&times;</span>
       <h2>Seu Carrinho de Compras</h2>
@@ -114,13 +168,22 @@
       </div>
       <button class="botao-finalizar">Finalizar Compra</button>
     </div>
+  </section>
+  <!--janela flutuante com banner -->
+  <div id="popup-desconto" class="popup">
+  <div class="popup-conteudo">
+    <span class="fechar-popup">&times;</span>
+    <img src="https://copilot.microsoft.com/th/id/BCO.1ae5589f-5a11-48e2-9f99-00dc32a59731.png" alt="Desconto especial" />
+    <p>🎉 Ganhe 10% de desconto no Pix! Aproveite agora!</p>
+    <a href="index.html" class="btn-comprar-link">Ver produtos</a>
   </div>
+</div>
 
+<!--botão zapzap -->
   <a href="https://api.whatsapp.com/send?phone=5585992113998&text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20as%20canecas." target="_blank" class="whatsapp-float">
     <img src="https://portais.univasf.edu.br/programadegestao/imagens/icon-whatsapp.png/@@images/image.png" alt="Logo do WhatsApp" class="whatsapp-icon-img" />
   </a>
-
-  <footer class="rodape-principal">
+  <footer class="rodape-principal" id="footer">
     <div class="rodape-container">
       <div class="rodape-coluna">
         <h3>TRABALHO (Sua Loja)</h3>
@@ -152,5 +215,21 @@
   </footer>
 
   <script src="script.js" defer></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const abrir = document.getElementById('abrir-login');
+    const fechar = document.getElementById('fechar-login');
+    const modal = document.getElementById('modal-login');
+
+    abrir.addEventListener('click', () => {
+      modal.classList.add('ativo');
+    });
+
+    fechar.addEventListener('click', () => {
+      modal.classList.remove('ativo');
+    });
+  });
+</script>
+
 </body>
 </html>
